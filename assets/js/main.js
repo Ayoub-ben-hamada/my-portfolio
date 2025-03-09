@@ -1,3 +1,28 @@
+const form =document.querySelector('form');
+const name = document.getElementById('name-field');
+const email = document.getElementById('email-field');
+const message = document.getElementById('message-field');
+const subject = document.getElementById('subject-field');
+
+function sendEmail(){
+  const bodyMessage = `Full Name: : ${name.value}<br> Email: : ${email.value}<br> Message: : ${message.value}`;
+
+  Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "ayoubbenhamada2@gmail.com",
+    Password : "402EC5438C516A0D46EBD67897F1F2D03613",
+    To : 'ayoubbenhamada2@gmail.com',
+    From : "ayoubbenhamada2@gmail.com",
+    Subject : subject.value,
+    Body : bodyMessage
+}).then(
+  message => alert(message)
+);
+}
+form.addEventListener('submit', (e) =>{
+  e.preventDefault();
+  sendEmail();
+});
 
 
 (function() {

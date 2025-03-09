@@ -10,6 +10,7 @@
   
   <!-- PAGECLIP -->
   <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+  
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -554,15 +555,13 @@
                     </div>
             
                     <div class="col-md-12 text-center">
-                        <!-- <div class="loading">Loading...</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your message has been sent. Thank you!</div> -->
-            
                         <button type="submit">Send Message</button>
                     </div>
             
                 </div>
             </form>
+            
+
         </div>  
 
   </main>
@@ -597,44 +596,8 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script>
-    function sendEmail(event) {
-  event.preventDefault();  // Prevents the default form submission
-
-  const recipient = document.getElementById("email-field").value;
-  const subject = document.getElementById("subject-field").value;
-  const message = document.getElementById("message-field").value;
-
-  // Prepare data to send
-  const data = {
-    recipient: "ayoubbenhamada25@gmail.com",
-    subject: subject,
-    message: message
-  };
-
-  // Send POST request to the server
-  fetch("http://localhost:3000/send-email", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log("Success:", data);
-    alert("Email sent successfully!");
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-    alert("Error sending email");
-  });
-}
-
-  </script>
+  <script src="https://smtpjs.com/v3/smtp.js" charset="utf-8"></script>
   
-  </script>
-  <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 </body>
 
 </html>
