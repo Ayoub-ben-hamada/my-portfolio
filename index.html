@@ -525,36 +525,72 @@
             </div>
           </div>
           <div class="col-lg-7">
-            <form id="contact-form" class="php-email-form" data-aos="fade-up" data-aos-delay="200" onsubmit="sendEmail(event)">
+            <form id="contact-form" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
                 <div class="row gy-4">
-            
                     <div class="col-md-6">
                         <label for="name-field" class="pb-2">Your Name</label>
                         <input type="text" name="name" id="name-field" class="form-control" required>
                     </div>
-            
+        
                     <div class="col-md-6">
                         <label for="email-field" class="pb-2">Your Email</label>
                         <input type="email" name="email" id="email-field" class="form-control" required>
                     </div>
-            
+        
                     <div class="col-md-12">
                         <label for="subject-field" class="pb-2">Subject</label>
                         <input type="text" name="subject" id="subject-field" class="form-control" required>
                     </div>
-            
+        
                     <div class="col-md-12">
                         <label for="message-field" class="pb-2">Message</label>
                         <textarea name="message" id="message-field" class="form-control" rows="10" required></textarea>
                     </div>
-            
+        
                     <div class="col-md-12 text-center">
                         <button type="submit">Send Message</button>
                     </div>
-            
+        
                 </div>
             </form>
-            
+        </div>
+        
+        <!-- JavaScript to handle the form submission -->
+        <script>
+            document.getElementById('contact-form').addEventListener('submit', async function(event) {
+                event.preventDefault(); // Prevent the form from submitting the traditional way
+        
+                const formData = new FormData(event.target); // Collect form data
+        
+                // Convert FormData to a plain object
+                const formObject = {};
+                formData.forEach((value, key) => {
+                    formObject[key] = value;
+                });
+        
+                // Send the data to the serverless function
+                try {
+                    const response = await fetch('/.netlify/functions/send-email', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formObject), // Send form data as JSON
+                    });
+        
+                    const result = await response.json();
+        
+                    if (response.ok) {
+                        alert('Message sent successfully!');
+                    } else {
+                        alert('Failed to send message: ' + result.error || 'Unknown error');
+                    }
+                } catch (error) {
+                    alert('Error sending message: ' + error.message);
+                }
+            });
+        </script>
+        
 
         </div>  
 
