@@ -9,6 +9,9 @@ exports.handler = async (event) => {
         const { name, email, subject, message } = JSON.parse(event.body);
 
         const API_KEY = process.env.ELASTIC_EMAIL_API_KEY; // Secure API Key
+
+        console.log("API Key:", API_KEY); // Add this for debugging
+
         const FROM_EMAIL = "ayoubbenhamada2@gmail.com"; // Replace with your verified email
         const TO_EMAIL = "ayoubbenhamada25@gmail.com"; // Replace with your destination email
 
