@@ -1,13 +1,14 @@
-const fetch = (await import('node-fetch')).default;
-
 exports.handler = async (event) => {
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Method Not Allowed" };
     }
 
     try {
-        console.log("Request received.");  // Log when the function starts executing
-        
+        // Dynamically import node-fetch to support ESM in Netlify Functions
+        const fetch = (await import('node-fetch')).default;
+
+        console.log("Request received.");
+
         const { name, email, subject, message } = JSON.parse(event.body);
         console.log("Parsed request body:", { name, email, subject, message });
 
@@ -33,19 +34,27 @@ exports.handler = async (event) => {
 
         // Log the raw response text for debugging
         const rawResponse = await response.text();
-        console.log("Raw Response:", rawResponse);  // Log raw response
+        console.log("Raw Response:", rawResponse);
 
         // If response is not empty, attempt to parse it as JSON
         let result = {};
         if (rawResponse) {
             try {
                 result = JSON.parse(rawResponse);
-                console.log("Elastic Email Response:", result);  // Log the parsed response
+                console.log("Elastic Email Response:", result);
             } catch (e) {
                 console.error("Error parsing JSON:", e);
+                return {
+                    statusCode: 500,
+                    body: JSON.stringify({ error: "Failed to parse JSON response", details: e.message }),
+                };
             }
         } else {
             console.error("Received empty response");
+            return {
+                statusCode: 500,
+                body: JSON.stringify({ error: "Received empty response from Elastic Email" }),
+            };
         }
 
         if (result.success === true) {
@@ -54,6 +63,7 @@ exports.handler = async (event) => {
                 body: JSON.stringify({ message: "Message sent successfully!" }),
             };
         } else {
+            console.error("Elastic Email returned an error:", result);
             return {
                 statusCode: 500,
                 body: JSON.stringify({ error: "Failed to send message", details: result }),
@@ -63,7 +73,7 @@ exports.handler = async (event) => {
         console.error("Error:", error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: "Internal Server Error" }),
+            body: JSON.stringify({ error: "Internal Server Error", details: error.message }),
         };
     }
 };
