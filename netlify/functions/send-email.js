@@ -12,7 +12,6 @@ exports.handler = async (event) => {
         const FROM_EMAIL = "ayoubbenhamada2@gmail.com"; // Replace with your verified email
         const TO_EMAIL = "ayoubbenhamada25@gmail.com"; // Replace with your destination email
 
-        // Send email request to Elastic Email API
         const response = await fetch("https://api.elasticemail.com/v2/email/send", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -26,22 +25,23 @@ exports.handler = async (event) => {
             }),
         });
 
-        // Check if the email was sent successfully
-        if (response.ok) {
-            const result = await response.json();
+        const result = await response.json();
+
+        console.log("Elastic Email Response:", result);  // Log the response for debugging
+
+        if (result.success === true) {
             return {
                 statusCode: 200,
-                body: JSON.stringify(result), // Success response
+                body: JSON.stringify({ message: "Message sent successfully!" }),
             };
         } else {
-            const error = await response.json();
             return {
-                statusCode: response.status,
-                body: JSON.stringify({ error: error.message || "Failed to send email" }),
+                statusCode: 500,
+                body: JSON.stringify({ error: "Failed to send message", details: result }),
             };
         }
     } catch (error) {
-        console.error(error);
+        console.error("Error:", error);
         return {
             statusCode: 500,
             body: JSON.stringify({ error: "Internal Server Error" }),
