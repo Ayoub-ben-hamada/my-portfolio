@@ -524,61 +524,42 @@
             </div>
           </div>
           <div class="col-lg-7">
-            <form
-              id="contact-form"
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              data-netlify-recaptcha="true"
-              netlify-honeypot="bot-field"
-            >
-              <!-- Hidden form-name for Netlify -->
-              <input type="hidden" name="form-name" value="contact" />
-              <input type="hidden" name="bot-field" />
-          
-              <div class="row gy-4">
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Your Name</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required />
+            <form id="contact-form" class="php-email-form" data-aos="fade-up" data-aos-delay="200" action="POST" netilfy>
+                <div class="row gy-4">
+                    <div class="col-md-6">
+                        <label for="name-field" class="pb-2">Your Name</label>
+                        <input type="text" name="name" id="name-field" class="form-control" required>
+                    </div>
+        
+                    <div class="col-md-6">
+                        <label for="email-field" class="pb-2">Your Email</label>
+                        <input type="email" name="email" id="email-field" class="form-control" required>
+                    </div>
+        
+                    <div class="col-md-12">
+                        <label for="subject-field" class="pb-2">Subject</label>
+                        <input type="text" name="subject" id="subject-field" class="form-control" required>
+                    </div>
+        
+                    <div class="col-md-12">
+                        <label for="message-field" class="pb-2">Message</label>
+                        <textarea name="message" id="message-field" class="form-control" rows="10" required></textarea>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="message-field" class="pb-2">File</label>
+                      <input type="file" name="myfile" id="myfile" class="form-control" placeholder="Upload File" rows="10">
+                  </div>
+                  <div class="field">
+                    <div data-netlify-recaptcha="true">
+                    </div>
+                  </div>
+                    <div class="col-md-12 text-center">
+                        <button type="submit">Send Message</button>
+                    </div>
+        
                 </div>
-          
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Your Email</label>
-                  <input type="email" name="email" id="email-field" class="form-control" required />
-                </div>
-          
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Subject</label>
-                  <input type="text" name="subject" id="subject-field" class="form-control" required />
-                </div>
-          
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Message</label>
-                  <textarea name="message" id="message-field" class="form-control" rows="10" required></textarea>
-                </div>
-          
-                <div class="col-md-12">
-                  <label for="myfile" class="pb-2">File</label>
-                  <input
-                    type="file"
-                    name="myfile"
-                    id="myfile"
-                    class="form-control"
-                    placeholder="Upload File"
-                  />
-                </div>
-          
-                <div class="field">
-                  <div data-netlify-recaptcha="true"></div>
-                </div>
-          
-                <div class="col-md-12 text-center">
-                  <button type="submit">Send Message</button>
-                </div>
-              </div>
             </form>
-          </div>
-          
+        </div>
       </div> 
   </main>
 
