@@ -1203,3 +1203,112 @@ section,
   margin-right: 8px;
   color: var(--accent-color);
 }
+
+/*--------------------------------------------------------------
+# Certifications Section
+--------------------------------------------------------------*/
+.certifications .portfolio-content {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  background: var(--surface-color);
+}
+
+.certifications .portfolio-content:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.certifications .portfolio-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: 0.3s;
+}
+
+.certifications .portfolio-content:hover img {
+  transform: scale(1.05);
+}
+
+.certifications .portfolio-content .portfolio-info {
+  padding: 20px;
+  background: var(--surface-color);
+  opacity: 1;
+  position: relative;
+  inset: auto;
+}
+
+.certifications .portfolio-content .portfolio-info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--heading-color);
+  margin-bottom: 8px;
+  background-color: transparent;
+  padding: 0;
+  display: block;
+  line-height: 1.4;
+}
+
+.certifications .portfolio-content .portfolio-info p {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--default-color);
+  opacity: 0.8;
+  margin-bottom: 15px;
+  display: block;
+  text-align: left;
+}
+
+.certifications .portfolio-content .portfolio-info .details-link {
+  position: relative;
+  left: auto;
+  top: auto;
+  font-size: 14px;
+  color: var(--accent-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: 0.3s;
+  line-height: normal;
+}
+
+.certifications .portfolio-content .portfolio-info .details-link:hover {
+  color: var(--heading-color);
+  text-decoration: underline;
+}
+
+.certifications .portfolio-filters {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.certifications .portfolio-filters li {
+  cursor: pointer;
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--default-color);
+  transition: 0.3s;
+  border-radius: 50px;
+  border: 2px solid color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.certifications .portfolio-filters li:hover,
+.certifications .portfolio-filters li.filter-active {
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
