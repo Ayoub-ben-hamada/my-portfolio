@@ -159,6 +159,26 @@
 
   });
 
+  const certificationsSection = document.querySelector('#certifications');
+  const showMoreCertifications = document.querySelector('#show-more-certifications');
+  if (certificationsSection && showMoreCertifications) {
+    showMoreCertifications.addEventListener('click', () => {
+      const expanded = certificationsSection.classList.toggle('show-all');
+      showMoreCertifications.setAttribute('aria-expanded', expanded);
+      showMoreCertifications.textContent = expanded
+        ? 'Afficher moins de certificats'
+        : 'Afficher plus de certificats';
+
+      const certificationLayout = certificationsSection.querySelector('.isotope-container');
+      if (certificationLayout && typeof Isotope !== 'undefined') {
+        const isotopeInstance = Isotope.data(certificationLayout);
+        if (isotopeInstance) {
+          isotopeInstance.layout();
+        }
+      }
+    });
+  }
+
   /**
    * Init swiper sliders
    */

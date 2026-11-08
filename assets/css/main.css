@@ -1312,3 +1312,11 @@ section,
   background-color: var(--accent-color);
   border-color: var(--accent-color);
 }
+
+.certifications .certification-extra {
+  display: none;
+}
+
+.certifications.show-all .certification-extra {
+  display: block;
+}
